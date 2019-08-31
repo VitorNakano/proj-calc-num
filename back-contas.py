@@ -31,33 +31,40 @@ def epsilon(expoente):
 
 def calcIntervalos(intervalos):
     listaResultados = []
-    for _ in range(intervalos *-2):
+    for _ in intervalos:
         resultado = funcao(intervalos)
-        intervalos = intervalos + 1
         listaResultados.append(resultado)
     return listaResultados
 
-def definirIntervalos(listaResultados, intervalos):
-    listarResultados = []
-    for i in range(intervalos*-2-1):
-        if(listaResultados[i] < 0 and listaResultados[i + 1] > 0) or (listaResultados[i] > 0 and listaResultados[i + 1] < 0):
-            listarResultados.append(intervalos)
-            listarResultados.append(intervalos + 1)
-            intervaloDefinido.append(listaResultados[i])
-            intervaloDefinido.append(listaResultados[i + 1])
-            intervalos = intervalos + 1
-    return listarResultados
+def definirIntervalos(intervalos):
+    listaDeResultados = []
+    listaDeIntervalos = []
+    resultadosDeIntervalos = []
+
+    for i in range(intervalos *-1, intervalos + 1):
+        resultado = funcao(i)
+        listaDeResultados.append(resultado)
+        listaDeIntervalos.append(i)
+    
+    for i in range(len(listaDeIntervalos)-1):
+        if(listaDeResultados[i] < 0 and listaDeResultados[i + 1] > 0) or (listaDeResultados[i] > 0 and listaDeResultados[i + 1] < 0):
+            print(i, listaDeResultados[i], listaDeResultados[i+1])
+            resultadosDeIntervalos.append(listaDeIntervalos[i])
+            resultadosDeIntervalos.append(listaDeIntervalos[i+1])
+
+    return resultadosDeIntervalos
+
 
 def zeros(a, b):
     media = (a + b) / 2
     fdeX = funcao(media)
     criterioParada = abs((b - a) / 2)
 
+    print(media, fdeX, criterioParada)
+
     if criterioParada < epsilon(3):
         interacaoX.append(media)
         return interacaoX
-
-    print(media, fdeX, criterioParada)
 
     interacaoX.append(media)
     interacaoFdeX.append(fdeX)
@@ -77,10 +84,5 @@ def refinamento(intervaloDefinido, calcIntervalo):
         else:
             print(calcIntervalo[i], calcIntervalo[i + 1])
             zeros(calcIntervalo[i], calcIntervalo[i + 1])
-
-intervalo = -5
-resultado = calcIntervalos(intervalo)
-calc_intervalos = definirIntervalos(resultado, intervalo)
-refinamento(intervaloDefinido, calc_intervalos)
 
 #%%
