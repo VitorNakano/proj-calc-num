@@ -1,12 +1,12 @@
-#%%
-a, b, c, d, e, f = 0, 0, 1, 0, -9, 3
+# %%
+a, b, c, d, e, f = 2, 1, 1, 1, -9, 3
 intervaloDefinido = []
 interacaoX = []
 interacaoFdeX = []
 interacaoParada = []
 
-# Metodo que irá definir os números da função
-# Os parâmetros podem aceitar qualquer valor numérico
+# Metodo que irá definir os números da função.
+# Os parâmetros podem aceitar qualquer valor numérico.
 def numeros(a, b, c, d, e, f):
     self.a = a
     self.b = b
@@ -15,15 +15,19 @@ def numeros(a, b, c, d, e, f):
     self.e = e
     self.f = f
 
-# Método que resolve a função
-# O parâmetro irá definir o valor de x para o f(x)
+# Método que resolve a função.
+# O parâmetro irá definir o valor de x para o f(x).
+#
+# return Será o resultado da função.
 def funcao(x):
     resultado = a*x**5 + b*x**4 + c*x**3 + d*x**2 + e*x + f
     return resultado
 
-# Método que define o Epsilon
-# O parâmetro recebe um número, de preferência um inteiro,
-# para calcular o valor de Epsilon
+# Método que define o Epsilon.
+# O parâmetro recebe um número, de preferência um inteiro, 
+# para calcular o valor de Epsilon.
+# 
+# return Devolve o valor calculado de Epsilon.
 def epsilon(expoente):
     epsilon = 1 / 10**expoente
     return epsilon
@@ -36,23 +40,35 @@ def calcIntervalos(intervalos):
         listaResultados.append(resultado)
     return listaResultados
 
-def definirIntervalos(intervalos):
+# Método que irá mostrar os intervalos existentes dentro da função.
+# Parâmetro dois valores que serão estipulados como os intervalos
+# de um valor x até um valo y.
+#
+# return Será uma lista com todos os intervalos encontrados.
+def definirIntervalos(val1, val2):
     listaDeResultados = []
     listaDeIntervalos = []
     resultadosDeIntervalos = []
+    intervalo = []
 
-    for i in range(intervalos *-1, intervalos + 1):
+    for i in range(val1, val2 + 1):
         resultado = funcao(i)
         listaDeResultados.append(resultado)
         listaDeIntervalos.append(i)
-    
-    for i in range(len(listaDeIntervalos)-1):
+
+    for i in range(len(listaDeIntervalos) - 1):
         if(listaDeResultados[i] < 0 and listaDeResultados[i + 1] > 0) or (listaDeResultados[i] > 0 and listaDeResultados[i + 1] < 0):
-            print(i, listaDeResultados[i], listaDeResultados[i+1])
             resultadosDeIntervalos.append(listaDeIntervalos[i])
             resultadosDeIntervalos.append(listaDeIntervalos[i+1])
 
-    return resultadosDeIntervalos
+    for i in range(len(resultadosDeIntervalos)):
+        if (i % 2 == 0):
+            arrTemp = []
+            arrTemp.append(resultadosDeIntervalos[i])
+            arrTemp.append(resultadosDeIntervalos[i + 1])
+            intervalo.append(arrTemp)
+
+    return intervalo
 
 
 def zeros(a, b):
@@ -75,6 +91,7 @@ def zeros(a, b):
     if fdeX > 0:
         zeros(media, b)
 
+
 def refinamento(intervaloDefinido, calcIntervalo):
     array = len(calcIntervalo)
     for i in range(0, array, 2):
@@ -85,4 +102,4 @@ def refinamento(intervaloDefinido, calcIntervalo):
             print(calcIntervalo[i], calcIntervalo[i + 1])
             zeros(calcIntervalo[i], calcIntervalo[i + 1])
 
-#%%
+# %%
