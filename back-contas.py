@@ -1,5 +1,5 @@
 # %%
-a, b, c, d, e, f = 2, 1, 1, 1, -9, 3
+a, b, c, d, e, f = 1, 2, 1, 4, -9, 3
 intervaloDefinido = []
 interacaoX = []
 interacaoFdeX = []
@@ -55,9 +55,10 @@ def definirIntervalos(val1, val2):
         resultado = funcao(i)
         listaDeResultados.append(resultado)
         listaDeIntervalos.append(i)
+        print(resultado)
 
     for i in range(len(listaDeIntervalos) - 1):
-        if(listaDeResultados[i] < 0 and listaDeResultados[i + 1] > 0) or (listaDeResultados[i] > 0 and listaDeResultados[i + 1] < 0):
+        if(listaDeResultados[i] < 1 and listaDeResultados[i + 1] > -1) or (listaDeResultados[i] > -1 and listaDeResultados[i + 1] < 1):
             resultadosDeIntervalos.append(listaDeIntervalos[i])
             resultadosDeIntervalos.append(listaDeIntervalos[i+1])
 
